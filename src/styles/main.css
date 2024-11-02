@@ -11,6 +11,20 @@ body, html {
   height: 100%;
 }
 
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  padding: 8px;
+  color: #E6C767;
+  text-decoration: none;
+  z-index: 102;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
@@ -27,18 +41,16 @@ header {
   background-color: rgba(34, 49, 52, 0.9);
   position: fixed;
   top: 0;
-  z-index: 1001;
+  z-index: 101;
 }
 
 header .page-title_container {
-  text-align: center;
-  margin: 0.5em 1em;
+  margin: 1em 2em;
 }
 
 header .page-title {
   font-weight: 700;
   font-size: 2em;
-  display: inline-block;
   color: #E6C767;
   letter-spacing: 1px;
 }
@@ -47,19 +59,35 @@ header .nav-container {
   margin: 0.5em 1em;
 }
 
+header .nav-list {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
 header .nav-item {
   display: inline-block;
   line-height: 70px;
 }
 
 header .nav-item a {
+  display: inline-block;
+  width: 100%;
+  min-width: 44px;
+  min-height: 44px;
+  padding-inline: 1.3em;
+
+  color: #e6c767;
   font-weight: 700;
   font-size: 1.2em;
-  color: #e6c767;
   text-decoration: none;
-  padding: 1.3em;
-  text-transform: uppercase;
-  text-align: center;
+
+  transition: 150ms all ease-in-out;
+}
+
+header .nav-item a:hover {
+  background-color: #e6c767;
+  color: #223134;
 }
 
 .hero {
@@ -80,7 +108,6 @@ header .nav-item a {
   background-color: rgba(230, 199, 103, 0.7);
   padding: 10px 30px;
   border-radius: 20px;
-  
 }
 
 .hero-title {
@@ -88,6 +115,7 @@ header .nav-item a {
   font-weight: 700;
   font-size: 50px;
   letter-spacing: 3px;
+  text-align: center;
 }
 
 main {
@@ -97,8 +125,25 @@ main {
 
 .content {
   padding: 32px;
+  text-align: center;
 }
 
+.content .latest__label {
+  font-size: 30px;
+  font-weight: lighter;
+}
+
+.content .latest__label::after {
+  content: '';
+  margin-top: 16px;
+  display: block;
+  border-bottom: 3px solid #eeeeee;
+}
+
+footer {
+  background-color: #223134;
+  color: #E6C767;
+}
 
 
 

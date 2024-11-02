@@ -15,11 +15,14 @@
     />
   </head>
   <body>
+    <a href="#maincontent" class="skip-link">Menuju ke konten</a>
     <header>
       <div class="page-title_container">
+        <button id="menu" class="header_menu">☰</button>
         <h1 class="page-title">Indonesia Restaurant</h1>
       </div>
-      <nav class="nav-container">
+
+      <nav id="drawer" class="nav-container">
         <ul class="nav-list">
           <li class="nav-item"><a href="#">Home</a></li>
           <li class="nav-item"><a href="#">Favorite</a></li>
@@ -34,10 +37,15 @@
       </div>
     </div>
 
-    <main>
+    <main id="maincontent">
       <section class="content">
+        <h1 class="latest__label">Eksplorasi Rasa: Temukan Restoran Favorit Anda</h1>
         <restaurant-list minwidth="300" gutter="16"></restaurant-list>
       </section>
     </main>
+
+    <footer>
+      <footer-bar></footer-bar>
+    </footer>
   </body>
 </html>

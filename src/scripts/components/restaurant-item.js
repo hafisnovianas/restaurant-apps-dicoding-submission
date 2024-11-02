@@ -39,6 +39,15 @@ class RestaurantItem extends HTMLElement {
 
       .restaurant-item_content {
         padding: 16px;
+        line-height: 44px;
+      }
+
+      .restaurant-item_content a {
+        box-sizing: border-box;
+        display: inline-block;
+        text-decoration: none;
+        min-width: 44px;
+        min-height: 44px;
       }
 
       .restaurant-item_thumbnail {
@@ -47,21 +56,30 @@ class RestaurantItem extends HTMLElement {
         object-fit: cover;
       }
 
-      .restaurant-item_city {
+      .restaurant-item_rating {
         font-size: 10px;
         text-transform: uppercase;
         color: #999;
+        margin: 0;
+      }
+
+      .restaurant-item_rating_city {
+        color: red;
       }
 
       .restaurant-item_title {
         font-weight: 500;
         font-size: 16px;
-        margin-top: 16px;
+        margin: 0;
         transition: 0.3s opacity;
       }
 
       .restaurant-item_title:hover {
         opacity: 0.5;
+      }
+
+      .restaurant-item_title a {
+        color: inherit;
       }
 
       .restaurant-item_description {
@@ -77,7 +95,7 @@ class RestaurantItem extends HTMLElement {
       }
 
       
-      @media screen and (min-width: 650px) {
+      @media screen and (min-width: 400px) {
         .restaurant-item_content {
           padding: 16px 32px 32px 32px;
         }
@@ -103,16 +121,18 @@ class RestaurantItem extends HTMLElement {
         <img 
           class="restaurant-item_thumbnail"
           src=${this._restaurant.pictureId}
-          alt="Gambar 1"
+          alt="Iustrasi ${this._restaurant.name}"
         />
 
         <div class="restaurant-item_content">
-          <p class="restaurant-item_city">
+          <p class="restaurant-item_rating">
             Rating ${this._restaurant.rating}
-            (${this._restaurant.city})
+            <a href="#" class="restaurant-item_rating_city">(${this._restaurant.city})</a>
           </p>
 
-          <h1 class="restaurant-item_title">${this._restaurant.name}</h1>
+          <h1 class="restaurant-item_title">
+            <a href="#">${this._restaurant.name}</a>
+          </h1>
           <p class="restaurant-item_description">${this._restaurant.description}</p>
         </div>
       </article>    
