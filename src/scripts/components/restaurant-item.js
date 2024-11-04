@@ -30,24 +30,35 @@ class RestaurantItem extends HTMLElement {
   _updateStyle() {
     this._style.textContent = `
       .restaurant-item {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        position: relative;
         width: 100%;
         height: 100%;
         border-radius: 5px;
         overflow: hidden;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
       }
 
-      .restaurant-item_content {
-        padding: 16px;
-        line-height: 44px;
-      }
-
-      .restaurant-item_content a {
+      .restaurant-item a {
         box-sizing: border-box;
         display: inline-block;
         text-decoration: none;
         min-width: 44px;
         min-height: 44px;
+        line-height: 44px;
+        font-weight: 500;
+      }
+
+      .restaurant-item_city {
+        color: #223134;
+        position: absolute;
+        top: 10px;
+        left: 0;
+        padding-inline: 15px;
+        background-color: rgba(230, 199, 103, 0.9);
+      }
+
+      .restaurant-item_content {
+        padding: 16px;
       }
 
       .restaurant-item_thumbnail {
@@ -63,12 +74,7 @@ class RestaurantItem extends HTMLElement {
         margin: 0;
       }
 
-      .restaurant-item_rating_city {
-        color: red;
-      }
-
       .restaurant-item_title {
-        font-weight: 500;
         font-size: 16px;
         margin: 0;
         transition: 0.3s opacity;
@@ -83,9 +89,10 @@ class RestaurantItem extends HTMLElement {
       }
 
       .restaurant-item_description {
-        margin-top: 16px;
+        margin: 0;
         font-size: 12px;
         line-height: 1.5em;
+        text-align: justify;
 
         display: -webkit-box;
         overflow: hidden;
@@ -123,11 +130,12 @@ class RestaurantItem extends HTMLElement {
           src=${this._restaurant.pictureId}
           alt="Iustrasi ${this._restaurant.name}"
         />
+        
+        <a href="#" class="restaurant-item_city">Kota: ${this._restaurant.city}</a>
 
         <div class="restaurant-item_content">
           <p class="restaurant-item_rating">
             Rating ${this._restaurant.rating}
-            <a href="#" class="restaurant-item_rating_city">(${this._restaurant.city})</a>
           </p>
 
           <h1 class="restaurant-item_title">
