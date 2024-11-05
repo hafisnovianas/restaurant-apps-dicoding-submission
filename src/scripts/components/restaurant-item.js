@@ -8,7 +8,9 @@ class RestaurantItem extends HTMLElement {
     description: null,
     pictureId: null,
     city: null,
-    rating: null
+    rating: null,
+    latitude: null,
+    longitude: null
   }
 
   constructor() {
@@ -16,6 +18,29 @@ class RestaurantItem extends HTMLElement {
 
     this._shadowRoot = this.attachShadow({ mode: 'open'});
     this._style = document.createElement('style')
+  }
+
+  connectedCallback() {
+    this._shadowRoot
+      .querySelector('.restaurant-item_city')
+      .addEventListener("click", event => this._onCityButtonClick())
+  }
+
+  disconnectedCallback() {
+    this._shadowRoot
+      .querySelector('.restaurant-item_city')
+      .removeEventListener("click", event => this._onCityButtonClick())
+  }
+
+  _onCityButtonClick() {
+    const itemId = this._restaurant.id
+
+    this.dispatchEvent(
+      new CustomEvent('showMap', {
+        detail: { itemId },
+        bubbles: true
+      })
+    )
   }
 
   set restaurant(value) {
@@ -29,6 +54,15 @@ class RestaurantItem extends HTMLElement {
 
   _updateStyle() {
     this._style.textContent = `
+      a, button {
+        box-sizing: border-box;
+        display: inline-block;
+        min-width: 44px;
+        min-height: 44px;
+        line-height: 44px;
+        font-weight: 500;
+      }
+
       .restaurant-item {
         position: relative;
         width: 100%;
@@ -38,16 +72,6 @@ class RestaurantItem extends HTMLElement {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
       }
 
-      .restaurant-item a {
-        box-sizing: border-box;
-        display: inline-block;
-        text-decoration: none;
-        min-width: 44px;
-        min-height: 44px;
-        line-height: 44px;
-        font-weight: 500;
-      }
-
       .restaurant-item_city {
         color: #223134;
         position: absolute;
@@ -55,6 +79,13 @@ class RestaurantItem extends HTMLElement {
         left: 0;
         padding-inline: 15px;
         background-color: rgba(230, 199, 103, 0.9);
+        transition: 0.3s opacity;
+        border: none;
+      }
+
+      .restaurant-item_city:hover {
+        background-color: rgba(230, 199, 103, 1);
+        cursor: pointer;
       }
 
       .restaurant-item_content {
@@ -86,6 +117,7 @@ class RestaurantItem extends HTMLElement {
 
       .restaurant-item_title a {
         color: inherit;
+        text-decoration: none;
       }
 
       .restaurant-item_description {
@@ -131,7 +163,7 @@ class RestaurantItem extends HTMLElement {
           alt="Iustrasi ${this._restaurant.name}"
         />
         
-        <a href="#" class="restaurant-item_city">Kota: ${this._restaurant.city}</a>
+        <button class="restaurant-item_city">Kota: ${this._restaurant.city}</button>
 
         <div class="restaurant-item_content">
           <p class="restaurant-item_rating">
@@ -143,7 +175,7 @@ class RestaurantItem extends HTMLElement {
           </h1>
           <p class="restaurant-item_description">${this._restaurant.description}</p>
         </div>
-      </article>    
+      </article>
     `
   }
 }

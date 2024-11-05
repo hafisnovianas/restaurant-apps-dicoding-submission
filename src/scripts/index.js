@@ -9,5 +9,5 @@ console.log('Hello Coders! :)');
 
 document.addEventListener('DOMContentLoaded', () => {
   restaurants();
-  drawer()
+  drawer();
 });
