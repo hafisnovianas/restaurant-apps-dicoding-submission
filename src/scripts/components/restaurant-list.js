@@ -62,11 +62,16 @@ class RestaurantList extends HTMLElement {
         text-align: left;
       }
 
-      @media screen and (min-width: 700px) {
+      @media screen and (min-width: 984px) {
         .restaurant {
-          display: grid;
           grid-column-gap: 10px;
           grid-row-gap: 16px;
+        }
+      }
+
+      @media screen and (max-width: 363px) {
+        .restaurant {
+          grid-template-columns: 1fr;
         }
       }
     `;
