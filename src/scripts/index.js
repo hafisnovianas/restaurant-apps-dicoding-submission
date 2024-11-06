@@ -1,6 +1,6 @@
 import 'regenerator-runtime'; /* for async await transpile */
-import '../styles/main.css';
-import '../styles/responsive.css';
+import '../styles/main.scss';
+import '../styles/responsive.scss';
 import './components/components.js';
 import restaurants from './restaurants.js';
 import drawer from './drawer.js';
