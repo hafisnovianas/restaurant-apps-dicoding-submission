@@ -6,41 +6,41 @@ class RestaurantItem extends HTMLElement {
     id: null,
     name: null,
     description: null,
-    pictureId: null,
+    pictureUrl: null,
     city: null,
     rating: null,
     latitude: null,
     longitude: null
-  }
+  };
 
   constructor() {
     super();
 
-    this._shadowRoot = this.attachShadow({ mode: 'open'});
-    this._style = document.createElement('style')
+    this._shadowRoot = this.attachShadow({ mode: 'open' });
+    this._style = document.createElement('style');
   }
 
   connectedCallback() {
     this._shadowRoot
       .querySelector('.restaurant-item_city')
-      .addEventListener("click", event => this._onCityButtonClick())
+      .addEventListener('click', () => this._onCityButtonClick());
   }
 
   disconnectedCallback() {
     this._shadowRoot
       .querySelector('.restaurant-item_city')
-      .removeEventListener("click", event => this._onCityButtonClick())
+      .removeEventListener('click', () => this._onCityButtonClick());
   }
 
   _onCityButtonClick() {
-    const itemId = this._restaurant.id
+    const itemId = this._restaurant.id;
 
     this.dispatchEvent(
       new CustomEvent('showMap', {
         detail: { itemId },
         bubbles: true
       })
-    )
+    );
   }
 
   set restaurant(value) {
@@ -147,7 +147,7 @@ class RestaurantItem extends HTMLElement {
           font-size: 14px;
         }
       }
-    `
+    `;
   }
 
   render() {
@@ -159,7 +159,7 @@ class RestaurantItem extends HTMLElement {
       <article class="restaurant-item" id=${this._restaurant.id}>
         <img 
           class="restaurant-item_thumbnail"
-          src=${this._restaurant.pictureId}
+          src=${this._restaurant.pictureUrl}
           alt="Iustrasi ${this._restaurant.name}"
         />
         
@@ -171,13 +171,13 @@ class RestaurantItem extends HTMLElement {
           </p>
 
           <h1 class="restaurant-item_title">
-            <a href="#">${this._restaurant.name}</a>
+            <a href="/#/detail/${this._restaurant.id}">${this._restaurant.name}</a>
           </h1>
           <p class="restaurant-item_description">${this._restaurant.description}</p>
         </div>
       </article>
-    `
+    `;
   }
 }
 
-customElements.define('restaurant-item',RestaurantItem);
+customElements.define('restaurant-item', RestaurantItem);

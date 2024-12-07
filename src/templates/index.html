@@ -4,15 +4,20 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#DB0000"/>
 
-    <title>Restaurant Apps</title>
-
-    <!-- Google Font -->
     <link
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
       rel="stylesheet"
       type="text/css"
     />
+    
+    <link rel="manifest" href="./app.webmanifest">
+    <link rel="icon" href="./favicon.png">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+
+    <script src="https://use.fontawesome.com/b070c8f1df.js"></script>
+    <title>Restaurant Apps</title>
   </head>
   <body>
     <map-popup></map-popup>
@@ -25,25 +30,20 @@
 
       <nav id="drawer" class="nav-container">
         <ul class="nav-list">
-          <li class="nav-item"><a href="/">Home</a></li>
-          <li class="nav-item"><a href="#">Favorite</a></li>
+          <li class="nav-item"><a href="#/main-page">Home</a></li>
+          <li class="nav-item"><a href="#/favorite">Favorite</a></li>
           <li class="nav-item"><a href="https://www.linkedin.com/in/hafisnovianas">About Us</a></li>
         </ul>
       </nav>
     </header>
 
-    <div class="hero">
+    <div id="hero" class="hero">
       <div class="hero-inner">
         <h1 class="hero-title">Cita Rasa Indonesia</h1>
       </div>
     </div>
 
-    <main id="maincontent">
-      <section class="content">
-        <h1 class="latest__label">Eksplorasi Rasa: Temukan Restoran Favorit Anda</h1>
-        <restaurant-list minwidth="300" gutter="16"></restaurant-list>
-      </section>
-    </main>
+    <main id="maincontent"></main>
 
     <footer>
       <footer-bar></footer-bar>

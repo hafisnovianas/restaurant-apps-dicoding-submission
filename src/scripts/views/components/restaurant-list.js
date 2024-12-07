@@ -1,4 +1,4 @@
-import Utils from "../utils.js";
+import Utils from '../../utils.js';
 
 class RestaurantList extends HTMLElement {
   _shadowRoot = null;
@@ -8,14 +8,14 @@ class RestaurantList extends HTMLElement {
   _gutter = 24;
 
   static get observedAttributes() {
-    return ["minwidth", "gutter"];
+    return ['minwidth', 'gutter'];
   }
 
   constructor() {
     super();
 
-    this._shadowRoot = this.attachShadow({ mode: "open"});
-    this._style = document.createElement('style')
+    this._shadowRoot = this.attachShadow({ mode: 'open' });
+    this._style = document.createElement('style');
 
     this.render();
   }
@@ -23,7 +23,7 @@ class RestaurantList extends HTMLElement {
   set minwidth(value) {
     const newVal = Number(value);
 
-    if(!Utils.isValidInteger(newVal)) return;
+    if (!Utils.isValidInteger(newVal)) return;
 
     this._minwidth = newVal;
   }
@@ -35,7 +35,7 @@ class RestaurantList extends HTMLElement {
   set gutter(value) {
     const newVal = Number(value);
 
-    if(!Utils.isValidInteger(newVal)) return;
+    if (!Utils.isValidInteger(newVal)) return;
 
     this._gutter = newVal;
   }
@@ -48,7 +48,6 @@ class RestaurantList extends HTMLElement {
     this._style.textContent = `
       :host {
         width: 100%;
-        margin: 60px auto;
         text-align: center;
       }
   
@@ -75,7 +74,7 @@ class RestaurantList extends HTMLElement {
         }
       }
     `;
-    
+
   }
 
   render() {
@@ -92,15 +91,15 @@ class RestaurantList extends HTMLElement {
 
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
-      case "minwidth":
-        this.minwidth = newValue;
-        break;
-      case "gutter":
-        this.gutter = newValue;
-        break;
+    case 'minwidth':
+      this.minwidth = newValue;
+      break;
+    case 'gutter':
+      this.gutter = newValue;
+      break;
     }
     this.render();
   }
 }
 
-customElements.define("restaurant-list", RestaurantList);
+customElements.define('restaurant-list', RestaurantList);
