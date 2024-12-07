@@ -1,7 +1,6 @@
 import DicodingRestaurantSource from '../../data/dicodingrestaurant-source';
 import CONFIG from '../../globals/config';
 import Utils from '../../utils';
-//const restaurantsJson = require('../../data/DATA.json');
 
 const MainPage = {
   async render() {
