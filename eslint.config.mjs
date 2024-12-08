@@ -11,7 +11,7 @@ export default [
         ...globals.browser,
         ...globals.node
       }
-    }
+    },
   },
   pluginJs.configs.recommended,
   daStyle,

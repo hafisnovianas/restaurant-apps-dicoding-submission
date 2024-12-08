@@ -1,6 +1,6 @@
 import DicodingRestaurantSource from '../../data/dicodingrestaurant-source';
 import CONFIG from '../../globals/config';
-import Utils from '../../utils';
+import Utils from '../../utils/utils';
 
 const MainPage = {
   async render() {
@@ -24,9 +24,6 @@ const MainPage = {
     });
 
     restaurantsContainer.append(...restaurantItemElements);
-
-    const headerElement = document.querySelector('header');
-    headerElement.style.position = 'fixed';
 
     const heroElement = document.querySelector('#hero');
     Utils.showElement(heroElement);

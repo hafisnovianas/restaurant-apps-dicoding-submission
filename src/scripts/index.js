@@ -4,6 +4,7 @@ import '../styles/responsive.scss';
 import './views/components/components.js';
 import App from './views/app';
 import swRegister from './utils/sw-register';
+
 //import WebSocketInitiator from './utils/websocket-initiator';
 //import FooterToolsInitiator from './utils/footer-tools-initiator';
 //import CONFIG from './globals/config';

@@ -26,12 +26,12 @@
     }
 
     .nav-container {
+      position: absolute;
       z-index: 10;
       width: 200px;
       background-color: #fff;
-      position: absolute;
       margin-inline: 0;
-      top: 0;
+      top: 68px;
   
       -webkit-transform: translate(-200px, 0);
       transform: translate(-200px, 0);

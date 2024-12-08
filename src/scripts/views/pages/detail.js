@@ -1,7 +1,7 @@
 import CONFIG from '../../globals/config';
 import UrlParser from '../../routes/url-parser';
 import DicodingRestaurantSource from '../../data/dicodingrestaurant-source';
-import Utils from '../../utils';
+import Utils from '../../utils/utils';
 import LikeButtonInitiator from '../../utils/like-button-initiator';
 
 const Detail = {
@@ -22,9 +22,6 @@ const Detail = {
     const restaurantContainer = document.querySelector('restaurant-detail');
     restaurant.pictureUrl = `${CONFIG.BASE_IMAGE_URL}/large/${restaurant.pictureId}`;
     restaurantContainer.restaurant = restaurant;
-
-    const headerElement = document.querySelector('header');
-    headerElement.style.position = 'relative';
 
     const heroElement = document.querySelector('#hero');
     Utils.hideElement(heroElement);

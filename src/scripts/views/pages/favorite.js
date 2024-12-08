@@ -1,5 +1,5 @@
 import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb';
-import Utils from '../../utils';
+import Utils from '../../utils/utils';
 
 const Favorite = {
   async render() {
@@ -23,11 +23,8 @@ const Favorite = {
 
     restaurantsContainer.append(...restaurantItemElements);
 
-    const headerElement = document.querySelector('header');
-    headerElement.style.position = 'fixed';
-
     const heroElement = document.querySelector('#hero');
-    Utils.showElement(heroElement);
+    Utils.hideElement(heroElement);
   },
 };
 
