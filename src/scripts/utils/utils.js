@@ -41,11 +41,11 @@ class Utils {
     }, 500);
   }
 
-  static showError(error) {
+  static showError(errorName, errorMessage) {
     Swal.fire({
-      title: 'Error!',
-      text: error,
-      icon: 'error',
+      title: errorName,
+      text: errorMessage,
+      icon: 'warning',
     });
   }
 }

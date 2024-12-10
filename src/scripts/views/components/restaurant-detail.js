@@ -23,31 +23,6 @@ class RestaurantDetail extends HTMLElement {
     this._style = document.createElement('style');
   }
 
-  /*
-  connectedCallback() {
-    this._shadowRoot
-      .querySelector('.restaurant-item_city')
-      .addEventListener('click', () => this._onCityButtonClick());
-  }
-
-  disconnectedCallback() {
-    this._shadowRoot
-      .querySelector('.restaurant-item_city')
-      .removeEventListener('click', () => this._onCityButtonClick());
-  }
-
-  _onCityButtonClick() {
-    const itemId = this._restaurant.id;
-
-    this.dispatchEvent(
-      new CustomEvent('showMap', {
-        detail: { itemId },
-        bubbles: true
-      })
-    );
-  }
-  */
-
   set restaurant(value) {
     this._restaurant = value;
     this.render();

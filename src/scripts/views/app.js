@@ -25,8 +25,12 @@ class App {
     const page = routes[url];
     this._content.innerHTML = await page.render();
     Utils.showLoading();
-    await page.afterRender();
-    Utils.hideLoading();
+    try {
+      await page.afterRender();
+      Utils.hideLoading();
+    } catch (error) {
+      Utils.showError(error, 'Tidak dapat menampilkan data restoran karena sedang offline');
+    }
   }
 };
 

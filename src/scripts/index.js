@@ -16,6 +16,8 @@ const app = new App({
 });
 
 window.addEventListener('hashchange', () => {
+  const hash = window.location.hash.slice(1);
+  if (hash == 'maincontent') return;
   app.renderPage();
 });
 

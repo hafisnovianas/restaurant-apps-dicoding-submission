@@ -1,21 +1,35 @@
 import API_ENDPOINT from '../globals/api-endpoint';
 
 class DicodingRestaurantSource {
+  static async doFetch(endpoint, postOptions = {}) {
+    let options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Auth-Token': '12345',
+      },
+    };
+
+    if (postOptions) {
+      options = postOptions;
+    }
+
+    const response = await fetch(endpoint, options);
+
+    if (!(response.status >= 200 && response.status < 300)) {
+      throw new Error('Tidak dapat menampilkan data restoran karena sedang offline');
+    }
+
+    return await response.json();
+  }
+
   static async getRestaurantList() {
-    const response = await fetch(API_ENDPOINT.LIST);
-    const responseJson = await response.json();
+    const responseJson = await this.doFetch(API_ENDPOINT.LIST);
     return responseJson.restaurants;
   }
 
-  static async upcomingMovies() {
-    const response = await fetch(API_ENDPOINT.UPCOMING);
-    const responseJson = await response.json();
-    return responseJson.results;
-  }
-
   static async getRestaurantDetail(id) {
-    const response = await fetch(API_ENDPOINT.DETAIL(id));
-    const responseJson = await response.json();
+    const responseJson = await this.doFetch(API_ENDPOINT.DETAIL(id));
     return responseJson.restaurant;
   }
 
@@ -29,13 +43,7 @@ class DicodingRestaurantSource {
       body: JSON.stringify(review),
     };
 
-    const response = await fetch(API_ENDPOINT.ADD_REVIEW, options);
-
-    if (!(response.status >= 200 && response.status < 300)) {
-      throw new Error('Something went wrong');
-    }
-
-    const responseJson = await response.json();
+    const responseJson = await this.doFetch(API_ENDPOINT.ADD_REVIEW, options);
     return responseJson.customerReviews;
   }
 }

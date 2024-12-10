@@ -133,7 +133,6 @@ class AddReview extends HTMLElement {
         width: 100%;
         min-width: 44px;
         min-height: 44px;
-        padding-inline: 1.3em;
         border-radius: 8px;
         border-color: #223134;
       
@@ -149,11 +148,17 @@ class AddReview extends HTMLElement {
       }
 
       input, textarea {
-        padding: 0.5rem;
+        min-width: 44px;
+        min-height: 44px;
+        padding-inline: 0.5rem;
         border-radius: 8px;
         border: 1px solid #ccc;
         outline: none;
         resize: none;
+      }
+
+      textarea {
+        padding-block: 1rem;
       }
 
       input:focus, textarea:focus {
@@ -188,7 +193,7 @@ class AddReview extends HTMLElement {
             id="title" 
             name="title" 
             required
-            minlength="6"
+            minlength="3"
             maxlength="50"
             aria-describedby="titleValidation"
           />
