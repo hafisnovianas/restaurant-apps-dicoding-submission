@@ -28,8 +28,8 @@ class App {
     try {
       await page.afterRender();
       Utils.hideLoading();
-    } catch (error) {
-      Utils.showError(error, 'Tidak dapat menampilkan data restoran karena sedang offline');
+    } catch {
+      Utils.showError('No Internet', 'Tidak dapat menampilkan data restoran karena sedang offline');
     }
   }
 };
