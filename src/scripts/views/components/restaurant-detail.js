@@ -176,6 +176,7 @@ class RestaurantDetail extends HTMLElement {
 
       <div class="restaurant_review_container">
         <slot name="reviews-slot"></slot>
+        <slot name="add-review-slot"></slot>
       </div>
     `;
 

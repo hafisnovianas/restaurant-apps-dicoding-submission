@@ -6,6 +6,9 @@ import LikeButtonInitiator from '../../utils/like-button-initiator';
 
 const Detail = {
   async render() {
+    const heroElement = document.querySelector('#hero');
+    Utils.hideElement(heroElement);
+
     return `
       <section class="content">
         <h1 class="latest__label">DETAIL RESTORAN</h1>
@@ -23,13 +26,16 @@ const Detail = {
     restaurant.pictureUrl = `${CONFIG.BASE_IMAGE_URL}/large/${restaurant.pictureId}`;
     restaurantContainer.restaurant = restaurant;
 
-    const heroElement = document.querySelector('#hero');
-    Utils.hideElement(heroElement);
-
     const menusElement = document.createElement('restaurant-menus');
     menusElement.menus = restaurant.menus;
     menusElement.setAttribute('slot', 'menus-slot');
     restaurantContainer.appendChild(menusElement);
+
+    const addReviewElement = document.createElement('add-review');
+    addReviewElement.id = restaurant.id;
+    addReviewElement.setAttribute('slot', 'add-review-slot');
+    restaurantContainer.appendChild(addReviewElement);
+    addReviewElement.addEventListener('save', onSaveButtonClickHandler);
 
     const reviewsElement = document.createElement('restaurant-reviews');
     reviewsElement.reviews = restaurant.customerReviews;
@@ -51,3 +57,30 @@ const Detail = {
 };
 
 export default Detail;
+
+const onSaveButtonClickHandler = async (event) => {
+  console.log('save diclick');
+  const { id, name, review } = event.detail;
+
+  const reviewData = {
+    id: id,
+    name: name,
+    review: review,
+  };
+
+  try {
+    const reviews = await DicodingRestaurantSource.addReview(reviewData);
+    Utils.showLoading();
+    updateReviews(reviews);
+  } catch (error) {
+    Utils.showError(error);
+  } finally {
+    Utils.hideLoading();
+  }
+};
+
+const updateReviews = async (reviews) => {
+  const reviewsElement = document.querySelector('restaurant-reviews');
+  reviewsElement.reviews = reviews;
+};
+

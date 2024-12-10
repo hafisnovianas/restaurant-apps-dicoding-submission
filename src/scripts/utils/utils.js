@@ -1,3 +1,6 @@
+import Swal from 'sweetalert2';
+
+
 class Utils {
   static showElement(element) {
     element.style.display = 'block';
@@ -15,6 +18,35 @@ class Utils {
 
   static isValidInteger(newValue) {
     return Number.isNaN(newValue) || Number.isFinite(newValue);
+  }
+
+  static showLoading() {
+    Swal.fire({
+      background: 'none',
+      showConfirmButton: false,
+      allowOutsideClick: false,
+      willOpen: () => {
+        Swal.showLoading();
+      }
+    });
+  }
+
+  static hideLoading() {
+    setTimeout(() => {
+      Swal.fire({
+        background: 'none',
+        showConfirmButton: false,
+        timer: 1,
+      });
+    }, 500);
+  }
+
+  static showError(error) {
+    Swal.fire({
+      title: 'Error!',
+      text: error,
+      icon: 'error',
+    });
   }
 }
 
