@@ -9,6 +9,12 @@ $hitam-kebiruan: #223134;
   color: $hitam-kebiruan;
 }
 
+a, button, input, textarea{
+  display: inline-block;
+  min-width: 44px;
+  min-height: 44px;
+}
+
 body, html {
   width: 100%;
   min-height: 100%;

@@ -28,7 +28,8 @@ class App {
     try {
       await page.afterRender();
       Utils.hideLoading();
-    } catch {
+    } catch (error) {
+      console.error(error);
       Utils.showError('No Internet', 'Tidak dapat menampilkan data restoran karena sedang offline');
     }
   }
