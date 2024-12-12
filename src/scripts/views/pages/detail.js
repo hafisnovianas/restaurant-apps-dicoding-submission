@@ -68,14 +68,14 @@ const onSaveButtonClickHandler = async (event) => {
     review: review,
   };
 
+  Utils.showLoading();
   try {
     const reviews = await DicodingRestaurantSource.addReview(reviewData);
-    Utils.showLoading();
     updateReviews(reviews);
-  } catch (error) {
-    Utils.showError(error);
-  } finally {
     Utils.hideLoading();
+  } catch (error) {
+    console.error(error);
+    Utils.showError('No Internet', 'Tidak dapat menambahkan review karena sedang offline');
   }
 };
 
