@@ -2,7 +2,7 @@ import CONFIG from '../../globals/config';
 import UrlParser from '../../routes/url-parser';
 import DicodingRestaurantSource from '../../data/dicodingrestaurant-source';
 import Utils from '../../utils/utils';
-import LikeButtonInitiator from '../../utils/like-button-initiator';
+import LikeButtonPresenter from '../../utils/like-button-presenter';
 
 const Detail = {
   async render() {
@@ -42,7 +42,7 @@ const Detail = {
     reviewsElement.setAttribute('slot', 'reviews-slot');
     restaurantContainer.appendChild(reviewsElement);
 
-    LikeButtonInitiator.init({
+    LikeButtonPresenter.init({
       likeButtonContainer: document.querySelector('#likeButtonContainer'),
       restaurant: {
         id: restaurant.id,
