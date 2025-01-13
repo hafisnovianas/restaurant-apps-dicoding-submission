@@ -31,7 +31,7 @@ describe('Unliking A Restaurant', () => {
     await TestFactories.createLikeButtonPresenterWithRestaurant({ id: 1 });
 
     document.querySelector('[aria-label="unlike this restaurant"]').dispatchEvent(new Event('click'));
-    expect(await FavoriteRestaurantIdb.getAllRestaurant()).toEqual([]);
+    expect(await FavoriteRestaurantIdb.getAllRestaurants()).toEqual([]);
   });
 
   it('should not throw error when user click unlike widget if the unliked Restaurant is not in the list', async () => {
@@ -39,6 +39,6 @@ describe('Unliking A Restaurant', () => {
 
     await FavoriteRestaurantIdb.deleteRestaurant(1);
     document.querySelector('[aria-label="unlike this restaurant"]').dispatchEvent(new Event('click'));
-    expect(await FavoriteRestaurantIdb.getAllRestaurant()).toEqual([]);
+    expect(await FavoriteRestaurantIdb.getAllRestaurants()).toEqual([]);
   });
 });
