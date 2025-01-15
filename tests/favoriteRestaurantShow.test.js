@@ -46,7 +46,7 @@ describe('Showing all favorite restaurants', () => {
   describe('When favorite restaurants exist', () => {
     it('should show the restaurants', (done) => {
       document.getElementById('restaurants').addEventListener('restaurants:updated', () => {
-        expect(document.querySelectorAll('.restaurant-item').length).toEqual(2);
+        expect(document.querySelectorAll('restaurant-item').length).toEqual(2);
         done();
       });
 

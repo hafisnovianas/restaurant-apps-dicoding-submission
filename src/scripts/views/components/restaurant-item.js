@@ -13,7 +13,6 @@ class RestaurantItem extends HTMLElement {
 
   constructor() {
     super();
-
     this._shadowRoot = this.attachShadow({ mode: 'open' });
     this._style = document.createElement('style');
   }
@@ -135,23 +134,24 @@ class RestaurantItem extends HTMLElement {
         <img 
           class="restaurant-item_thumbnail"
           src=${this._restaurant.pictureUrl}
-          alt="Iustrasi ${this._restaurant.name}"
+          alt="Iustrasi ${this._restaurant.name || '-'}"
         />
         
-        <button class="restaurant-item_city">Kota: ${this._restaurant.city}</button>
+        <button class="restaurant-item_city">Kota: ${this._restaurant.city || '-'}</button>
 
         <div class="restaurant-item_content">
           <p class="restaurant-item_rating">
-            Rating ${this._restaurant.rating}
+            Rating ${this._restaurant.rating || '-'}
           </p>
 
           <h1 class="restaurant-item_title">
-            <a href="/#/detail/${this._restaurant.id}">${this._restaurant.name}</a>
+            <a href="/#/detail/${this._restaurant.id}">${this._restaurant.name || '-'}</a>
           </h1>
-          <p class="restaurant-item_description">${this._restaurant.description}</p>
+          <p class="restaurant-item_description">${this._restaurant.description || '-'}</p>
         </div>
       </article>
     `;
+    //console.log(this._shadowRoot.innerHTML)
   }
 }
 

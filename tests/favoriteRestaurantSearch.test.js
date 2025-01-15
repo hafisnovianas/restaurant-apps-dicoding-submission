@@ -29,9 +29,20 @@ describe('Searching restaurant', () => {
     });
   };
 
+  const getRestaurantTitleElements = () => {
+    const restaurantTitles = [];
+    const restaurantItems = document.querySelectorAll('restaurant-list > restaurant-item');
+    restaurantItems.forEach((item) => {
+      restaurantTitles.push(item.shadowRoot.querySelector('.restaurant-item_title'));
+    });
+
+    return restaurantTitles;
+  };
+
   beforeEach(() => {
-    setRestaurantSearchContainer()
-    constructPresenter()
+    setRestaurantSearchContainer();
+    constructPresenter();
+
   });
 
   describe('When query is not empty', () => {
@@ -53,7 +64,7 @@ describe('Searching restaurant', () => {
       document
         .getElementById('restaurants')
         .addEventListener('restaurants:updated', () => {
-          expect(document.querySelectorAll('.restaurant-item').length).toEqual(3);
+          expect(document.querySelectorAll('restaurant-item').length).toEqual(3);
           done();
         });
 
@@ -74,19 +85,20 @@ describe('Searching restaurant', () => {
       document
         .getElementById('restaurants')
         .addEventListener('restaurants:updated', () => {
-          const restaurantTitles = document.querySelectorAll('.restaurant__title');
-          expect(restaurantTitles.item(0).textContent).toEqual('restoran abc');
-          expect(restaurantTitles.item(1).textContent).toEqual('ada juga restoran abcde');
-          expect(restaurantTitles.item(2).textContent).toEqual('ini juga boleh restoran a');
+          const restaurantTitles = getRestaurantTitleElements();
+
+          expect(restaurantTitles[0].textContent.trim()).toEqual('restoran abc');
+          expect(restaurantTitles[1].textContent.trim()).toEqual('ada juga restoran abcde');
+          expect(restaurantTitles[2].textContent.trim()).toEqual('ini juga boleh restoran a');
           done();
         });
 
       favoriteRestaurants.searchRestaurants.mockImplementation((query) => {
         if (query === 'restoran a') {
           return [
-            { id: 111, title: 'restoran abc' },
-            { id: 222, title: 'ada juga restoran abcde' },
-            { id: 333, title: 'ini juga boleh restoran a' },
+            { id: 111, name: 'restoran abc' },
+            { id: 222, name: 'ada juga restoran abcde' },
+            { id: 333, name: 'ini juga boleh restoran a' },
           ];
         }
         return [];
@@ -98,10 +110,9 @@ describe('Searching restaurant', () => {
     it('should show - when the restaurant returned does not contain a title', (done) => {
       document.getElementById('restaurants')
         .addEventListener('restaurants:updated', () => {
-          const restaurantTitles = document.querySelectorAll('.restaurant__title');
-          expect(restaurantTitles.item(0).textContent)
-            .toEqual('-');
-   
+          const restaurantTitles = getRestaurantTitleElements();
+
+          expect(restaurantTitles[0].textContent.trim()).toEqual('-');
           done();
         });
    
