@@ -25,13 +25,13 @@ class FavoriteRestaurantsView {
     if (restaurants.length) {
       html = restaurants.reduce((carry, restaurant) => carry.concat(createMovieItemTemplate(restaurant)), '');
     } else {
-      html = this._getEmptyMovieTemplate()
+      html = this._getEmptyRestaurantTemplate()
     }
     document.getElementById('restaurants').innerHTML = html;
     document.getElementById('restaurants').dispatchEvent(new Event('restaurants:updated'));
   }
 
-  _getEmptyMovieTemplate() {
+  _getEmptyRestaurantTemplate() {
     return `
       <div class="restaurant-item__not__found">
         Restoran tidak ditemukan
