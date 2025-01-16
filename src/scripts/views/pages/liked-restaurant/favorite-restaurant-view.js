@@ -1,15 +1,14 @@
-import { createMovieItemTemplate } from '../../templates/template-creator';
 import '../../components/components';
+import Utils from '../../../utils/utils';
 
-class FavoriteRestaurantsView {
+class FavoriteRestaurantView {
   getTemplate() {
     return `
       <div class="content">
+        <h1 class="latest__label">Restoran Favorit Anda</h1>
+        
         <input id="query" type="text">
-        <h2 class="content__heading">Your Liked Restaurant</h2>
-  
         <div id="restaurants" class="restaurants">
-          <restaurant-list minwidth="300" gutter="16"></restaurant-list>
         </div>
       </div>
     `;
@@ -23,13 +22,15 @@ class FavoriteRestaurantsView {
 
   showFavoriteRestaurants(restaurants) {
     let html;
+    const container = document.getElementById('restaurants');
+    Utils.emptyElement(container);
 
     if (restaurants.length) {
       html = this._getRestaurantListElement(restaurants);
-      document.getElementById('restaurants').appendChild(html);
+      container.appendChild(html);
     } else {
       html = this._getEmptyRestaurantTemplate();
-      document.getElementById('restaurants').innerHTML = html;
+      container.innerHTML = html;
     }
 
     document.getElementById('restaurants').dispatchEvent(new Event('restaurants:updated'));
@@ -44,7 +45,9 @@ class FavoriteRestaurantsView {
   }
 
   _getRestaurantListElement(restaurants) {
-    const restaurantsListElement = document.querySelector('restaurant-list');
+    const restaurantsListElement = document.createElement('restaurant-list');
+    restaurantsListElement.minwidth = '300';
+    restaurantsListElement.gutter = '16';
 
     const restaurantItemElements = restaurants.map((restaurant) => {
       const restaurantItemElement = document.createElement('restaurant-item');
@@ -57,4 +60,4 @@ class FavoriteRestaurantsView {
   }
 }
 
-export default FavoriteRestaurantsView;
+export default FavoriteRestaurantView;

@@ -17,9 +17,11 @@ const FavoriteRestaurantIdb = {
 
     return (await dbPromise).get(OBJECT_STORE_NAME, id);
   },
+  
   async getAllRestaurants() {
     return (await dbPromise).getAll(OBJECT_STORE_NAME);
   },
+
   async putRestaurant(restaurant) {
     if (!restaurant.hasOwnProperty('id')) {
       return;
@@ -32,15 +34,16 @@ const FavoriteRestaurantIdb = {
   },
 
   async searchRestaurants(query) {
-    return (await this.getAllRestaurants()).filter((restaurant) => {
-      const loweredCaseRestaurantTitle = (restaurant.title || '-').toLowerCase();
+    const result = (await this.getAllRestaurants()).filter((restaurant) => {
+      const loweredCaseRestaurantTitle = (restaurant.name || '-').toLowerCase();
       const jammedRestaurantTitle = loweredCaseRestaurantTitle.replace(/\s/g, '');
-
       const loweredCaseQuery = query.toLowerCase();
       const jammedQuery = loweredCaseQuery.replace(/\s/g, '');
 
       return jammedRestaurantTitle.indexOf(jammedQuery) !== -1;
     });
+
+    return result;
   },
 };
 

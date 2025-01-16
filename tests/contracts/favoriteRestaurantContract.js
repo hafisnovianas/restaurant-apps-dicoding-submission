@@ -42,15 +42,15 @@ const itActsAsFavoriteRestaurantModel = (favoriteRestaurant) => {
   });
 
   it('should be able to search for restaurants', async () => {
-    favoriteRestaurant.putRestaurant({ id: 1, title: 'restoran a' });
-    favoriteRestaurant.putRestaurant({ id: 2, title: 'restoran b' });
-    favoriteRestaurant.putRestaurant({ id: 3, title: 'restoran abc' });
-    favoriteRestaurant.putRestaurant({ id: 4, title: 'ini mah restoran abcd' });
- 
+    await favoriteRestaurant.putRestaurant({ id: 1, name: 'restoran a' });
+    await favoriteRestaurant.putRestaurant({ id: 2, name: 'restoran b' });
+    await favoriteRestaurant.putRestaurant({ id: 3, name: 'restoran abc' });
+    await favoriteRestaurant.putRestaurant({ id: 4, name: 'ini mah restoran abcd' });
+    
     expect(await favoriteRestaurant.searchRestaurants('restoran a')).toEqual([
-      { id: 1, title: 'restoran a' },
-      { id: 3, title: 'restoran abc' },
-      { id: 4, title: 'ini mah restoran abcd' },
+      { id: 1, name: 'restoran a' },
+      { id: 3, name: 'restoran abc' },
+      { id: 4, name: 'ini mah restoran abcd' },
     ]);
   });
 };
