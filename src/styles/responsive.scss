@@ -64,12 +64,16 @@
     font-size: 20px;
   }
 
-  .hero .hero-inner {
-    width: 100%;
-    border-radius: 0px;
+  .hero {
+    background-image: url('../public/images/heros/hero-image_2-small.jpg');
 
-    .hero-title {
-      font-size: 30px;
+    .hero .hero-inner {
+      width: 100%;
+      border-radius: 0px;
+
+      .hero-title {
+        font-size: 30px;
+      }
     }
   }
 }
@@ -94,5 +98,9 @@
 @media screen and (min-width: 660px) {
   header .page-title_container .header_menu {
     display: none;
+  }
+
+  .hero {
+    background-image: url('../public/images/heros/hero-image_2-large.jpg');
   }
 }

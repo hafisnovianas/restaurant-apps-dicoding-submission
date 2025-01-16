@@ -135,6 +135,7 @@ class RestaurantItem extends HTMLElement {
           class="restaurant-item_thumbnail"
           src=${this._restaurant.pictureUrl}
           alt="Iustrasi ${this._restaurant.name || '-'}"
+          loading="lazy"
         />
         
         <button class="restaurant-item_city">Kota: ${this._restaurant.city || '-'}</button>
@@ -151,7 +152,6 @@ class RestaurantItem extends HTMLElement {
         </div>
       </article>
     `;
-    //console.log(this._shadowRoot.innerHTML)
   }
 }
 
